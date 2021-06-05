@@ -33,7 +33,7 @@ def train_detection():
     OCR_MODEL_PATH = 'ocr.pt'
     EPOCH_NUM = 10
     device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-
+    print(device)
     all_marks = load_json(os.path.join(DATA_PATH, 'train.json'))
     test_start = int(TRAIN_SIZE * len(all_marks))
     train_marks = all_marks[:test_start]
@@ -53,7 +53,7 @@ def train_detection():
         img_folder='../data/',
         transforms=my_transforms
     )
-
+    print("train dataset")
     def collate_fn(batch):
         return tuple(zip(*batch))
 
@@ -72,7 +72,7 @@ def train_detection():
         num_workers=4,
         collate_fn=collate_fn,
     )
-
+    print("dataloader")
     torch.cuda.empty_cache()
     gc.collect()
     model = get_detector_model()
@@ -82,6 +82,7 @@ def train_detection():
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=20, factor=0.5, verbose=True)
 
     model.train()
+    print("train started")
     for epoch in range(EPOCH_NUM):
 
         print_loss = []
