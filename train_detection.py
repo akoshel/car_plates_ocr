@@ -86,9 +86,7 @@ def train_detection():
     for epoch in range(EPOCH_NUM):
 
         print_loss = []
-        for i, (images, targets) in tqdm.tqdm(enumerate(train_loader), leave=False, position=0,
-                                              total=len(train_loader)):
-
+        for i, (images, targets) in enumerate(train_loader):
             images = [image.to(device) for image in images]
             targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
 
