@@ -164,4 +164,5 @@ def train_detection():
 
 
 if __name__ == 'main':
+    print("go")
     train_detection()
