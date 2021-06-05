@@ -16,7 +16,7 @@ from ocr_helpers import OCRDataset, Resize, CRNN, get_vocab_from_marks, collate_
 
 
 def train_ocr():
-    DATA_PATH = './data/'
+    DATA_PATH = '../data/'
     TRAIN_SIZE = 0.9
     BATCH_SIZE_OCR = 256
     OCR_MODEL_PATH = 'ocr.pt'
@@ -154,3 +154,7 @@ def train_ocr():
 
         df_submit = pd.DataFrame({'file_name': file_name_result, 'plates_string': plates_string_result})
         df_submit.to_csv('submission.csv', index=False)
+
+
+if __name__ == "__main__":
+    train_ocr()

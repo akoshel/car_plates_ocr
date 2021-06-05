@@ -163,6 +163,6 @@ def train_detection():
         json.dump(preds, json_file, cls=npEncoder)
 
 
-if __name__ == 'main':
+if __name__ == "__main__":
     print("go")
     train_detection()
